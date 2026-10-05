@@ -13,7 +13,7 @@ Non c'è uno strumento testo: non si può aggiungere testo a un'immagine.
 | Web | un browser recente | Niente da installare. Si apre nel browser |
 | macOS 26 o successivo | Apple Silicon (arm64) | Scarica l'app |
 | Linux: Debian, Ubuntu, Linux Mint | x86_64, arm64 | Si compila con un solo comando, oppure si usano i file già compilati |
-| RenkuOS (RenkuOS (HaikuOS)OS) | x86_64, arm64 | `pkgman`, dal repository pkgman.rainygirl.com |
+| RenkuOS (HaikuOS) | x86_64, arm64 | `pkgman`, dal repository pkgman.rainygirl.com |
 
 ## Installazione
 

@@ -13,7 +13,7 @@ English · [Français](README.fr.md) · [Italiano](README.it.md) · [日本語](
 | Web | any current browser | Nothing to install. Open it in a browser |
 | macOS 26 or later | Apple Silicon (arm64) | Download the app |
 | Linux: Debian, Ubuntu, Linux Mint | x86_64, arm64 | Build it with one command, or use the prebuilt files |
-| RenkuOS (RenkuOS (HaikuOS)OS) | x86_64, arm64 | `pkgman`, from pkgman.rainygirl.com |
+| RenkuOS (HaikuOS) | x86_64, arm64 | `pkgman`, from pkgman.rainygirl.com |
 
 ## Install
 

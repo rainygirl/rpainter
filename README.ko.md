@@ -13,7 +13,7 @@
 | 웹 | 최신 브라우저 | 설치 없음. 브라우저에서 엽니다 |
 | macOS 26 이상 | Apple Silicon (arm64) | 앱을 내려받습니다 |
 | Linux: Debian, Ubuntu, Linux Mint | x86_64, arm64 | 명령 한 번으로 빌드하거나 미리 빌드한 파일을 씁니다 |
-| RenkuOS (RenkuOS (HaikuOS)OS) | x86_64, arm64 | pkgman.rainygirl.com 저장소에서 `pkgman`으로 설치합니다 |
+| RenkuOS (HaikuOS) | x86_64, arm64 | pkgman.rainygirl.com 저장소에서 `pkgman`으로 설치합니다 |
 
 ## 설치
 
