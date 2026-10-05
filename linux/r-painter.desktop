@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=R Painter
+Comment=Layer-based image editor
+Exec=RPainter %f
+Icon=r-painter
+Terminal=false
+Categories=Graphics;2DGraphics;RasterGraphics;
+MimeType=image/png;image/jpeg;image/webp;

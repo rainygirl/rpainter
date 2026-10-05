@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- R Painter app icon, drawn in the Haiku icon style: tilted view, colored outlines, gradients, soft ground shadow -->
+  <defs>
+    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe9b8"/><stop offset="0.5" stop-color="#eec57c"/><stop offset="1" stop-color="#c88a3c"/>
+    </linearGradient>
+    <linearGradient id="handle" gradientUnits="userSpaceOnUse" x1="0" y1="-3.5" x2="0" y2="3.5">
+      <stop offset="0" stop-color="#ff8f7a"/><stop offset="0.45" stop-color="#e8382a"/><stop offset="1" stop-color="#9c160e"/>
+    </linearGradient>
+    <linearGradient id="metal" gradientUnits="userSpaceOnUse" x1="0" y1="-4" x2="0" y2="4">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="0.5" stop-color="#c9ced6"/><stop offset="1" stop-color="#7c838f"/>
+    </linearGradient>
+    <linearGradient id="bristle" gradientUnits="userSpaceOnUse" x1="0" y1="-5" x2="0" y2="5">
+      <stop offset="0" stop-color="#9fd0ff"/><stop offset="0.5" stop-color="#3d8bf0"/><stop offset="1" stop-color="#1549b0"/>
+    </linearGradient>
+    <radialGradient id="red" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#ff9a8c"/><stop offset="1" stop-color="#d42a1e"/></radialGradient>
+    <radialGradient id="yellow" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#fff6a8"/><stop offset="1" stop-color="#f0b400"/></radialGradient>
+    <radialGradient id="green" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#b9f08a"/><stop offset="1" stop-color="#3f9a1c"/></radialGradient>
+    <radialGradient id="blue" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#a8d4ff"/><stop offset="1" stop-color="#2468d8"/></radialGradient>
+  </defs>
+
+  <!-- ground shadow -->
+  <ellipse cx="33" cy="55" rx="25" ry="5.5" fill="#000" opacity="0.22"/>
+
+  <!-- palette: darker slab underneath gives it thickness -->
+  <g stroke-linejoin="round" fill-rule="evenodd">
+    <path d="M5 40 C5 28 19 20 35 20 C50 20 60 27 60 36 C60 43 54 46 48 45 C44 44.5 41 46 42 49 C43 53 38 56 28 56 C15 56 5 50 5 40 Z M16 45 A4.6 3 0 1 0 25.2 45 A4.6 3 0 1 0 16 45 Z"
+          fill="#9a6222" stroke="#5a3408" stroke-width="2"/>
+    <path d="M5 37 C5 25 19 17 35 17 C50 17 60 24 60 33 C60 40 54 43 48 42 C44 41.5 41 43 42 46 C43 50 38 53 28 53 C15 53 5 47 5 37 Z M16 42 A4.6 3 0 1 0 25.2 42 A4.6 3 0 1 0 16 42 Z"
+          fill="url(#wood)" stroke="#6e420e" stroke-width="2"/>
+  </g>
+  <!-- palette highlight -->
+  <path d="M9 34 C11 26 22 20.5 34 20" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity="0.65"/>
+
+  <!-- paint blobs -->
+  <g stroke-width="1.4">
+    <ellipse cx="17.5" cy="31" rx="5" ry="3.3" fill="url(#green)" stroke="#1f5c0a"/>
+    <ellipse cx="29" cy="24.5" rx="5" ry="3.3" fill="url(#yellow)" stroke="#8a6200"/>
+    <ellipse cx="42" cy="24.5" rx="5" ry="3.3" fill="url(#red)" stroke="#7a120a"/>
+    <ellipse cx="52" cy="31.5" rx="4.6" ry="3.1" fill="url(#blue)" stroke="#123c8c"/>
+  </g>
+  <g fill="#fff" opacity="0.75">
+    <ellipse cx="16" cy="29.8" rx="1.7" ry="0.8"/><ellipse cx="27.5" cy="23.3" rx="1.7" ry="0.8"/>
+    <ellipse cx="40.5" cy="23.3" rx="1.7" ry="0.8"/><ellipse cx="50.6" cy="30.4" rx="1.6" ry="0.75"/>
+  </g>
+
+  <!-- brush, lying across the palette and pointing up-right -->
+  <g transform="translate(12 58) rotate(-47)">
+    <ellipse cx="30" cy="5.5" rx="26" ry="2.2" fill="#000" opacity="0.18"/>
+    <path d="M1 -1.6 L36 -3.2 L36 3.2 L1 1.6 C-1.3 1.6 -1.3 -1.6 1 -1.6 Z" fill="url(#handle)" stroke="#5e0c06" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M3 -0.9 L34 -2.1" fill="none" stroke="#fff" stroke-width="0.9" stroke-linecap="round" opacity="0.6"/>
+    <rect x="36" y="-3.7" width="8.5" height="7.4" rx="0.8" fill="url(#metal)" stroke="#474c55" stroke-width="1.5"/>
+    <path d="M38.8 -3.7 L38.8 3.7 M41.6 -3.7 L41.6 3.7" stroke="#474c55" stroke-width="0.7" opacity="0.6"/>
+    <path d="M44.5 -3.7 C49 -5.6 54 -4 59.5 0.4 C54 3.6 49 5.2 44.5 3.7 Z" fill="url(#bristle)" stroke="#0d3684" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M46.5 -2.6 C49.5 -3.4 52.5 -2.6 55 -1" fill="none" stroke="#fff" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>
+  </g>
+</svg>
