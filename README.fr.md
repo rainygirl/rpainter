@@ -1,6 +1,6 @@
 # <img src="docs/icon.png" width="32" height="32" alt=""> R Painter
 
-Un éditeur d'images à calques. Il fonctionne de la même façon sur le web, macOS, Linux et Haiku.
+Un éditeur d'images à calques. Il fonctionne de la même façon sur le web, macOS, Linux et RenkuOS (HaikuOS).
 L'interface suit la langue du système (français, anglais, italien, japonais ou coréen ; anglais pour les autres langues).
 Il n'y a pas d'outil texte : on ne peut pas ajouter de texte à une image.
 
@@ -13,8 +13,7 @@ Il n'y a pas d'outil texte : on ne peut pas ajouter de texte à une image.
 | Web | un navigateur récent | Rien à installer. Il s'ouvre dans le navigateur |
 | macOS 26 ou ultérieur | Apple Silicon (arm64) | Téléchargez l'application |
 | Linux : Debian, Ubuntu, Linux Mint | x86_64, arm64 | Se compile en une commande, ou utilisez les fichiers déjà compilés |
-| Haiku | x86_64 | `pkgman`, depuis le dépôt pkgman.rainygirl.com |
-| Haiku (RENKU) | arm64 | `pkgman`, depuis le dépôt pkgman.rainygirl.com |
+| RenkuOS (RenkuOS (HaikuOS)OS) | x86_64, arm64 | `pkgman`, depuis le dépôt pkgman.rainygirl.com |
 
 ## Installation
 
@@ -61,9 +60,9 @@ Il existe aussi des fichiers déjà compilés pour Ubuntu 24.04 :
 [x86_64](dist/r-painter-1.0.0-linux-x86_64.tar.gz), [arm64](dist/r-painter-1.0.0-linux-aarch64.tar.gz).
 Ils nécessitent le runtime Qt 6 (`libqt6widgets6`).
 
-### Haiku
+### RenkuOS (HaikuOS)
 
-![R Painter sous Haiku](docs/screenshots/haiku.png)
+![R Painter sous RenkuOS (HaikuOS)](docs/screenshots/haiku.png)
 
 1. Ouvrez Terminal et lancez :
 
@@ -72,7 +71,7 @@ Ils nécessitent le runtime Qt 6 (`libqt6widgets6`).
    pkgman install rpainter
    ```
 
-   Les paquets sont publiés pour x86_64 et arm64 (RENKU) ; `$(getarch -p)` choisit le bon. Haiku 32 bits (x86, x86_gcc2) n'est pas pris en charge. Le dépôt ne s'ajoute qu'une seule fois.
+   Les paquets sont publiés pour x86_64 et arm64 ; `$(getarch -p)` choisit le bon. RenkuOS (HaikuOS) 32 bits (x86, x86_gcc2) n'est pas pris en charge. Le dépôt ne s'ajoute qu'une seule fois.
 2. Ouvrez **R Painter** depuis le menu **Applications** de la Deskbar.
 
 Pour le compiler vous-même :
@@ -84,7 +83,7 @@ pkgman install gcc binutils make cmake haiku_devel
 
 ## Licence
 
-MIT. Voir [LICENSE](LICENSE). La version Haiku embarque libwebp (BSD) et stb (domaine public) ; leurs licences sont dans `haiku/third_party`.
+MIT. Voir [LICENSE](LICENSE). La version RenkuOS (HaikuOS) embarque libwebp (BSD) et stb (domaine public) ; leurs licences sont dans `haiku/third_party`.
 
 ## Utilisation de l'IA
 

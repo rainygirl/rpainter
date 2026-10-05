@@ -1,6 +1,6 @@
 # <img src="docs/icon.png" width="32" height="32" alt=""> R Painter
 
-A layer-based image editor. It works the same on the web, macOS, Linux and Haiku.
+A layer-based image editor. It works the same on the web, macOS, Linux and RenkuOS (HaikuOS).
 The interface follows your system language (English, French, Italian, Japanese or Korean; anything else gets English).
 There is no text tool: you cannot add text to an image.
 
@@ -13,8 +13,7 @@ English · [Français](README.fr.md) · [Italiano](README.it.md) · [日本語](
 | Web | any current browser | Nothing to install. Open it in a browser |
 | macOS 26 or later | Apple Silicon (arm64) | Download the app |
 | Linux: Debian, Ubuntu, Linux Mint | x86_64, arm64 | Build it with one command, or use the prebuilt files |
-| Haiku | x86_64 | `pkgman`, from pkgman.rainygirl.com |
-| Haiku (RENKU) | arm64 | `pkgman`, from pkgman.rainygirl.com |
+| RenkuOS (RenkuOS (HaikuOS)OS) | x86_64, arm64 | `pkgman`, from pkgman.rainygirl.com |
 
 ## Install
 
@@ -61,9 +60,9 @@ There are also prebuilt files for Ubuntu 24.04:
 [x86_64](dist/r-painter-1.0.0-linux-x86_64.tar.gz), [arm64](dist/r-painter-1.0.0-linux-aarch64.tar.gz).
 They need the Qt 6 runtime (`libqt6widgets6`).
 
-### Haiku
+### RenkuOS (HaikuOS)
 
-![R Painter running on Haiku](docs/screenshots/haiku.png)
+![R Painter running on RenkuOS (HaikuOS)](docs/screenshots/haiku.png)
 
 1. Open Terminal and run:
 
@@ -72,7 +71,7 @@ They need the Qt 6 runtime (`libqt6widgets6`).
    pkgman install rpainter
    ```
 
-   Packages are published for x86_64 and arm64 (RENKU); `$(getarch -p)` picks the right one. 32-bit Haiku (x86, x86_gcc2) is not supported. The repository only has to be added once.
+   Packages are published for x86_64 and arm64; `$(getarch -p)` picks the right one. 32-bit RenkuOS (HaikuOS) (x86, x86_gcc2) is not supported. The repository only has to be added once.
 2. Open **R Painter** from the **Applications** menu in Deskbar.
 
 To build it yourself:
@@ -84,7 +83,7 @@ pkgman install gcc binutils make cmake haiku_devel
 
 ## License
 
-MIT. See [LICENSE](LICENSE). The Haiku build bundles libwebp (BSD) and stb (public domain); their licenses are in `haiku/third_party`.
+MIT. See [LICENSE](LICENSE). The RenkuOS (HaikuOS) build bundles libwebp (BSD) and stb (public domain); their licenses are in `haiku/third_party`.
 
 ## AI disclosure
 

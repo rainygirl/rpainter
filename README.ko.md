@@ -1,6 +1,6 @@
 # <img src="docs/icon.png" width="32" height="32" alt=""> R Painter
 
-레이어 기반 이미지 편집기입니다. 웹, macOS, Linux, Haiku에서 같은 기능으로 동작합니다.
+레이어 기반 이미지 편집기입니다. 웹, macOS, Linux, RenkuOS (HaikuOS)에서 같은 기능으로 동작합니다.
 화면 언어는 시스템 언어를 따릅니다 (한국어, 영어, 일본어, 이탈리아어, 프랑스어. 그 외에는 영어).
 글자 추가 기능은 없습니다.
 
@@ -13,8 +13,7 @@
 | 웹 | 최신 브라우저 | 설치 없음. 브라우저에서 엽니다 |
 | macOS 26 이상 | Apple Silicon (arm64) | 앱을 내려받습니다 |
 | Linux: Debian, Ubuntu, Linux Mint | x86_64, arm64 | 명령 한 번으로 빌드하거나 미리 빌드한 파일을 씁니다 |
-| Haiku | x86_64 | pkgman.rainygirl.com 저장소에서 `pkgman`으로 설치합니다 |
-| Haiku (RENKU) | arm64 | pkgman.rainygirl.com 저장소에서 `pkgman`으로 설치합니다 |
+| RenkuOS (RenkuOS (HaikuOS)OS) | x86_64, arm64 | pkgman.rainygirl.com 저장소에서 `pkgman`으로 설치합니다 |
 
 ## 설치
 
@@ -61,9 +60,9 @@ Ubuntu 24.04용으로 미리 빌드한 파일도 있습니다:
 [x86_64](dist/r-painter-1.0.0-linux-x86_64.tar.gz), [arm64](dist/r-painter-1.0.0-linux-aarch64.tar.gz).
 실행하려면 Qt 6 런타임(`libqt6widgets6`)이 필요합니다.
 
-### Haiku
+### RenkuOS (HaikuOS)
 
-![Haiku에서 실행한 R Painter](docs/screenshots/haiku.png)
+![RenkuOS (HaikuOS)에서 실행한 R Painter](docs/screenshots/haiku.png)
 
 1. 터미널을 열고 실행합니다.
 
@@ -72,7 +71,7 @@ Ubuntu 24.04용으로 미리 빌드한 파일도 있습니다:
    pkgman install rpainter
    ```
 
-   패키지는 x86_64와 arm64(RENKU)용으로 배포하며, `$(getarch -p)`가 맞는 쪽을 고릅니다. 32비트 Haiku(x86, x86_gcc2)는 지원하지 않습니다. 저장소 추가는 한 번만 하면 됩니다.
+   패키지는 x86_64와 arm64용으로 배포하며, `$(getarch -p)`가 맞는 쪽을 고릅니다. 32비트 RenkuOS (HaikuOS)(x86, x86_gcc2)는 지원하지 않습니다. 저장소 추가는 한 번만 하면 됩니다.
 2. Deskbar의 **Applications** 메뉴에서 **R Painter**를 엽니다.
 
 직접 빌드하려면:
@@ -84,7 +83,7 @@ pkgman install gcc binutils make cmake haiku_devel
 
 ## 라이선스
 
-MIT. [LICENSE](LICENSE)를 참고하세요. Haiku 빌드에는 libwebp(BSD)와 stb(퍼블릭 도메인)가 들어 있으며, 각 라이선스는 `haiku/third_party`에 있습니다.
+MIT. [LICENSE](LICENSE)를 참고하세요. RenkuOS (HaikuOS) 빌드에는 libwebp(BSD)와 stb(퍼블릭 도메인)가 들어 있으며, 각 라이선스는 `haiku/third_party`에 있습니다.
 
 ## AI 사용 고지
 

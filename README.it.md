@@ -1,6 +1,6 @@
 # <img src="docs/icon.png" width="32" height="32" alt=""> R Painter
 
-Un editor di immagini a livelli. Funziona allo stesso modo sul web, su macOS, Linux e Haiku.
+Un editor di immagini a livelli. Funziona allo stesso modo sul web, su macOS, Linux e RenkuOS (HaikuOS).
 L'interfaccia segue la lingua del sistema (italiano, inglese, francese, giapponese o coreano; per le altre lingue, inglese).
 Non c'è uno strumento testo: non si può aggiungere testo a un'immagine.
 
@@ -13,8 +13,7 @@ Non c'è uno strumento testo: non si può aggiungere testo a un'immagine.
 | Web | un browser recente | Niente da installare. Si apre nel browser |
 | macOS 26 o successivo | Apple Silicon (arm64) | Scarica l'app |
 | Linux: Debian, Ubuntu, Linux Mint | x86_64, arm64 | Si compila con un solo comando, oppure si usano i file già compilati |
-| Haiku | x86_64 | `pkgman`, dal repository pkgman.rainygirl.com |
-| Haiku (RENKU) | arm64 | `pkgman`, dal repository pkgman.rainygirl.com |
+| RenkuOS (RenkuOS (HaikuOS)OS) | x86_64, arm64 | `pkgman`, dal repository pkgman.rainygirl.com |
 
 ## Installazione
 
@@ -61,9 +60,9 @@ Ci sono anche file già compilati per Ubuntu 24.04:
 [x86_64](dist/r-painter-1.0.0-linux-x86_64.tar.gz), [arm64](dist/r-painter-1.0.0-linux-aarch64.tar.gz).
 Richiedono il runtime Qt 6 (`libqt6widgets6`).
 
-### Haiku
+### RenkuOS (HaikuOS)
 
-![R Painter su Haiku](docs/screenshots/haiku.png)
+![R Painter su RenkuOS (HaikuOS)](docs/screenshots/haiku.png)
 
 1. Apri Terminal ed esegui:
 
@@ -72,7 +71,7 @@ Richiedono il runtime Qt 6 (`libqt6widgets6`).
    pkgman install rpainter
    ```
 
-   I pacchetti sono pubblicati per x86_64 e arm64 (RENKU); `$(getarch -p)` sceglie quello giusto. Haiku a 32 bit (x86, x86_gcc2) non è supportato. Il repository va aggiunto una volta sola.
+   I pacchetti sono pubblicati per x86_64 e arm64; `$(getarch -p)` sceglie quello giusto. RenkuOS (HaikuOS) a 32 bit (x86, x86_gcc2) non è supportato. Il repository va aggiunto una volta sola.
 2. Apri **R Painter** dal menu **Applications** di Deskbar.
 
 Per compilarlo da te:
@@ -84,7 +83,7 @@ pkgman install gcc binutils make cmake haiku_devel
 
 ## Licenza
 
-MIT. Vedi [LICENSE](LICENSE). La versione per Haiku include libwebp (BSD) e stb (pubblico dominio); le licenze sono in `haiku/third_party`.
+MIT. Vedi [LICENSE](LICENSE). La versione per RenkuOS (HaikuOS) include libwebp (BSD) e stb (pubblico dominio); le licenze sono in `haiku/third_party`.
 
 ## Nota sull'uso dell'IA
 
