@@ -6,14 +6,17 @@
 
 [English](README.md) · [Français](README.fr.md) · [Italiano](README.it.md) · 日本語 · [한국어](README.ko.md)
 
-## インストール
+## 対応プラットフォーム
 
-| 環境 | インストール方法 |
-|---|---|
-| Web | インストール不要。ブラウザーで開きます |
-| macOS 26 以降、Apple Silicon | アプリをダウンロードします |
-| Linux: Debian、Ubuntu、Linux Mint | コマンド一つでビルドします |
-| Haiku x86_64, arm64 | `pkgman` でインストールします |
+| 環境 | アーキテクチャ | インストール方法 |
+|---|---|---|
+| Web | 最新のブラウザー | インストール不要。ブラウザーで開きます |
+| macOS 26 以降 | Apple Silicon (arm64) | アプリをダウンロードします |
+| Linux: Debian、Ubuntu、Linux Mint | x86_64、arm64 | コマンド一つでビルドするか、ビルド済みファイルを使います |
+| Haiku | x86_64 | pkgman.rainygirl.com のリポジトリから `pkgman` でインストールします |
+| Haiku (RENKU) | arm64 | pkgman.rainygirl.com のリポジトリから `pkgman` でインストールします |
+
+## インストール
 
 ### Web
 
@@ -69,7 +72,7 @@ Ubuntu 24.04 向けのビルド済みファイルもあります:
    pkgman install rpainter
    ```
 
-   パッケージは x86_64 と arm64 向けに公開しています。リポジトリの追加は一度だけで済みます。
+   パッケージは x86_64 と arm64 (RENKU) 向けに公開しており、`$(getarch -p)` が合うほうを選びます。32 ビットの Haiku (x86、x86_gcc2) には対応していません。リポジトリの追加は一度だけで済みます。
 2. Deskbar の **Applications** メニューから **R Painter** を開きます。
 
 自分でビルドする場合:
@@ -81,7 +84,7 @@ pkgman install gcc binutils make cmake haiku_devel
 
 ## ライセンス
 
-MIT。[LICENSE](LICENSE) を参照してください。
+MIT。[LICENSE](LICENSE) を参照してください。 Haiku 版には libwebp (BSD) と stb (パブリックドメイン) が含まれており、それぞれのライセンスは `haiku/third_party` にあります。
 
 ## AI 利用について
 

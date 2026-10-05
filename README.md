@@ -6,14 +6,17 @@ There is no text tool: you cannot add text to an image.
 
 English · [Français](README.fr.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-## Install
+## Supported platforms
 
-| System | How to install |
-|---|---|
-| Web | Nothing to install. Open it in a browser |
-| macOS 26 or later, Apple Silicon | Download the app |
-| Linux: Debian, Ubuntu, Linux Mint | Build it with one command |
-| Haiku x86_64, arm64 | Install with `pkgman` |
+| System | Architecture | How to install |
+|---|---|---|
+| Web | any current browser | Nothing to install. Open it in a browser |
+| macOS 26 or later | Apple Silicon (arm64) | Download the app |
+| Linux: Debian, Ubuntu, Linux Mint | x86_64, arm64 | Build it with one command, or use the prebuilt files |
+| Haiku | x86_64 | `pkgman`, from pkgman.rainygirl.com |
+| Haiku (RENKU) | arm64 | `pkgman`, from pkgman.rainygirl.com |
+
+## Install
 
 ### Web
 
@@ -69,7 +72,7 @@ They need the Qt 6 runtime (`libqt6widgets6`).
    pkgman install rpainter
    ```
 
-   The package is published for x86_64 and arm64. The repository only has to be added once.
+   Packages are published for x86_64 and arm64 (RENKU); `$(getarch -p)` picks the right one. 32-bit Haiku (x86, x86_gcc2) is not supported. The repository only has to be added once.
 2. Open **R Painter** from the **Applications** menu in Deskbar.
 
 To build it yourself:
@@ -81,7 +84,7 @@ pkgman install gcc binutils make cmake haiku_devel
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE). The Haiku build bundles libwebp (BSD) and stb (public domain); their licenses are in `haiku/third_party`.
 
 ## AI disclosure
 
