@@ -18,17 +18,17 @@ cp build/RPainter "$STAGE/apps/RPainter"
 copyattr -d build/RPainter "$STAGE/apps/RPainter" 2>/dev/null || true
 ln -s ../../../../apps/RPainter "$STAGE/data/deskbar/menu/Applications/R Painter"
 cat > "$STAGE/.PackageInfo" <<INFO
-name			r_painter
+name			rpainter
 version			$VER-1
 architecture	$ARCH
 summary			"Layer-based image editor"
 description		"R Painter is a layer-based image editor: layers and blend modes, selections, magic wand cutouts, color adjustments, resizing and PNG/JPG/WebP export."
-packager		"R Painter"
-vendor			"R Painter"
-copyrights		{ "2026 R Painter" }
+packager		"rainygirl <rainygirl@gmail.com>"
+vendor			"rainygirl"
+copyrights		{ "2026 Lee JunHaeng" }
 licenses		{ "MIT" }
 provides {
-	r_painter = $VER-1
+	rpainter = $VER
 	app:RPainter = $VER
 }
 requires {
@@ -36,7 +36,7 @@ requires {
 }
 INFO
 mkdir -p ../dist
-OUT="../dist/r_painter-$VER-1-$ARCH.hpkg"
+OUT="../dist/rpainter-$VER-1-$ARCH.hpkg"
 rm -f "$OUT"
 package create -C "$STAGE" "$OUT"
 rm -rf "$STAGE"

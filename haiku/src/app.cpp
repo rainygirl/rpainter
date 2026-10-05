@@ -827,6 +827,10 @@ public:
             side->AddView(fSpin[i]);
         }
         fHex = new BTextControl("hex", "#", "", new BMessage('phex'));
+        // the '#' is the label, so it cannot be deleted; a complete value applies as it is typed
+        fHex->SetModificationMessage(new BMessage('phxm'));
+        fHex->TextView()->SetMaxBytes(6);
+        for (int ch = 32; ch < 127; ch++) if (!isxdigit(ch)) fHex->TextView()->DisallowChar(ch);
         side->AddView(fHex);
         BButton *okButton = new BButton("ok", TR("확인"), new BMessage('pok '));
         BLayoutBuilder::Group<>(this, B_VERTICAL, B_USE_DEFAULT_SPACING).SetInsets(B_USE_WINDOW_INSETS)
@@ -854,6 +858,15 @@ public:
             if (i < 3) { fH = fSpin[0]->Value(); fS = fSpin[1]->Value() / 100.0; fV = fSpin[2]->Value() / 100.0; }
             else SetRgb(fSpin[3]->Value(), fSpin[4]->Value(), fSpin[5]->Value());
             Sync();
+            break;
+        }
+        case 'phxm': {
+            const char *t = fHex->Text();
+            if (fSyncing || strlen(t) != 6 || strspn(t, "0123456789abcdefABCDEF") != 6) break;
+            const long v = strtol(t, NULL, 16);
+            if (Px(v) == Current()) break;
+            SetRgb(int(v >> 16) & 255, int(v >> 8) & 255, int(v) & 255);
+            fKeepHex = true; Sync(); fKeepHex = false;
             break;
         }
         case 'phex': {
@@ -884,7 +897,7 @@ private:
     NumField *fSpin[6];
     BTextControl *fHex;
     double fH = 0, fS = 0, fV = 0; // hue kept separately so it survives gray colors
-    bool fSyncing = false;
+    bool fSyncing = false, fKeepHex = false;
 
     Px Current() const { int r, g, b; hsvToRgb(fH, fS, fV, r, g, b); return Px(r) << 16 | Px(g) << 8 | Px(b); }
     void SetRgb(int r, int g, int b) {
@@ -903,7 +916,7 @@ private:
         for (int i = 0; i < 6; i++) fSpin[i]->SetValue(vals[i]);
         char buf[16];
         snprintf(buf, sizeof buf, "%06x", unsigned(c));
-        fHex->SetText(buf);
+        if (!fKeepHex) fHex->SetText(buf);
         fNew->SetColor(c);
         fSyncing = false;
     }

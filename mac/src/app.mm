@@ -916,13 +916,14 @@ static bool pickColor(NSString *title, Px &color) {
     }
     Px (^current)(void) = ^Px { int r, g, b; hsvToRgb(h, s, v, r, g, b); return Px(r) << 16 | Px(g) << 8 | Px(b); };
     void (^setRgb)(int, int, int) = ^(int r, int g, int b) { double nh, ns, nv; rgbToHsv(r, g, b, nh, ns, nv); if (ns > 0 && nv > 0) h = nh; s = ns; v = nv; };
+    __block bool keepHex = false; // while the hex field itself is being typed in
     void (^sync)(void) = ^{
         const Px c = current();
         sq.hue = strip.hue = h; sq.sat = s; sq.val = v;
         sq.needsDisplay = strip.needsDisplay = YES;
         const int vals[6] = {int(lround(h)) % 360, int(lround(s * 100)), int(lround(v * 100)), pxR(c), pxG(c), pxB(c)};
         for (int i = 0; i < 6; i++) tf[i].stringValue = [NSString stringWithFormat:@"%d", vals[i]];
-        tf[6].stringValue = [NSString stringWithFormat:@"%06x", unsigned(c)];
+        if (!keepHex) tf[6].stringValue = [NSString stringWithFormat:@"%06x", unsigned(c)];
         newSw.color = c;
     };
     sq.picked = ^(double x, double y) { s = x; v = 1 - y; sync(); };
@@ -935,9 +936,25 @@ static bool pickColor(NSString *title, Px &color) {
         if (t.length == 6 && [[NSScanner scannerWithString:t] scanHexInt:&val]) setRgb((val >> 16) & 255, (val >> 8) & 255, val & 255);
         sync();
     });
+    // a complete hex value applies as it is typed; the '#' is a label, so it cannot be deleted
+    id hexObserver = [NSNotificationCenter.defaultCenter addObserverForName:NSControlTextDidChangeNotification object:tf[6] queue:nil usingBlock:^(NSNotification *) {
+        NSString *raw = tf[6].stringValue;
+        NSMutableString *t = [NSMutableString string];
+        for (NSUInteger i = 0; i < raw.length && t.length < 6; i++) {
+            const unichar ch = [raw characterAtIndex:i];
+            if (ch < 128 && isxdigit(ch)) [t appendFormat:@"%C", ch];
+        }
+        if (![t isEqualToString:raw]) tf[6].stringValue = t;
+        unsigned val = 0;
+        if (t.length == 6 && [[NSScanner scannerWithString:t] scanHexInt:&val]) {
+            setRgb((val >> 16) & 255, (val >> 8) & 255, val & 255);
+            keepHex = true; sync(); keepHex = false;
+        }
+    }];
     sync();
     alert.accessoryView = acc;
     const bool ok = [alert runModal] == NSAlertFirstButtonReturn;
+    [NSNotificationCenter.defaultCenter removeObserver:hexObserver];
     [alert.window makeFirstResponder:nil];
     if (ok) color = current();
     return ok;

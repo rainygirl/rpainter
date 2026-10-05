@@ -1,35 +1,38 @@
 # <img src="docs/icon.png" width="32" height="32" alt=""> R Painter
 
-레이어 기반 이미지 편집기입니다. 웹, macOS, Linux, Haiku에서 같은 기능으로 동작합니다.
-화면 언어는 시스템 언어를 따릅니다 (한국어, 영어, 일본어, 이탈리아어, 프랑스어. 그 외에는 영어).
+A layer-based image editor. It works the same on the web, macOS, Linux and Haiku.
+The interface follows your system language (English, French, Italian, Japanese or Korean; anything else gets English).
+There is no text tool: you cannot add text to an image.
 
-## 설치
+English · [Français](README.fr.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-| 환경 | 설치 방법 |
+## Install
+
+| System | How to install |
 |---|---|
-| 웹 | 설치 없음. 브라우저에서 엽니다 |
-| macOS 26 이상, Apple Silicon | 앱을 내려받습니다 |
-| Linux: Debian, Ubuntu, Linux Mint | 명령 한 번으로 빌드합니다 |
-| Haiku x86_64 | 패키지를 내려받아 `pkgman`으로 설치합니다 |
+| Web | Nothing to install. Open it in a browser |
+| macOS 26 or later, Apple Silicon | Download the app |
+| Linux: Debian, Ubuntu, Linux Mint | Build it with one command |
+| Haiku x86_64 | Install with `pkgman` |
 
-### 웹
+### Web
 
-![웹에서 실행한 R Painter](docs/screenshots/web.png)
+![R Painter running in a browser](docs/screenshots/web.png)
 
-https://painter.coroke.net 을 엽니다.
+Open https://painter.coroke.net.
 
 ### macOS
 
-![macOS에서 실행한 R Painter](docs/screenshots/mac.png)
+![R Painter running on macOS](docs/screenshots/mac.png)
 
-1. [`r-painter-1.0.0-mac-arm64.dmg`](dist/r-painter-1.0.0-mac-arm64.dmg)를 내려받습니다.
-2. 열어서 **R Painter**를 **응용 프로그램** 폴더로 끌어다 놓습니다.
-3. 응용 프로그램에서 R Painter를 엽니다.
+1. Download [`r-painter-1.0.0-mac-arm64.dmg`](dist/r-painter-1.0.0-mac-arm64.dmg).
+2. Open it and drag **R Painter** to the **Applications** folder.
+3. Open R Painter from Applications.
 
-Apple Developer ID로 서명한 앱이 아니어서 처음 열 때 macOS가 막습니다. 한 번만 허용하면 됩니다.
+The app is not signed with an Apple Developer ID, so macOS blocks it the first time. You only have to allow it once.
 
-- 경고가 뜬 뒤 **시스템 설정 > 개인정보 보호 및 보안**에서 *"R Painter"이(가) 차단됨* 항목의 **그래도 열기**를 누릅니다.
-- 또는 터미널에서 (*"손상되었기 때문에 열 수 없습니다"* 가 나올 때도 이 방법을 씁니다):
+- After the warning, go to **System Settings > Privacy & Security**, find *"R Painter" was blocked* and click **Open Anyway**.
+- Or in Terminal (this also fixes *"is damaged and can't be opened"*):
 
   ```sh
   /usr/bin/xattr -dr com.apple.quarantine "/Applications/R Painter.app"
@@ -37,10 +40,10 @@ Apple Developer ID로 서명한 앱이 아니어서 처음 열 때 macOS가 막�
 
 ### Linux
 
-![Linux에서 실행한 R Painter](docs/screenshots/linux.png)
+![R Painter running on Linux](docs/screenshots/linux.png)
 
-1. 이 프로젝트를 ZIP으로 내려받아 풀거나 `git`으로 받습니다.
-2. 받은 폴더에서 터미널을 열고 실행합니다.
+1. Download this project as a ZIP and unpack it, or get it with `git`.
+2. Open a terminal in that folder and run:
 
    ```sh
    sudo apt install build-essential cmake qtbase5-dev qt5-image-formats-plugins
@@ -48,37 +51,38 @@ Apple Developer ID로 서명한 앱이 아니어서 처음 열 때 macOS가 막�
    sudo cmake --install linux/build
    ```
 
-   Qt 6만 있는 배포판에서는 `qtbase5-dev qt5-image-formats-plugins` 대신 `qt6-base-dev qt6-image-formats-plugins`를 설치합니다.
-3. 프로그램 메뉴에서 **R Painter**를 열거나 터미널에서 `RPainter`를 실행합니다.
+   On a distribution that only has Qt 6, install `qt6-base-dev qt6-image-formats-plugins` instead of `qtbase5-dev qt5-image-formats-plugins`.
+3. Open **R Painter** from the application menu, or run `RPainter` in a terminal.
 
-Ubuntu 24.04용으로 미리 빌드한 파일도 있습니다:
+There are also prebuilt files for Ubuntu 24.04:
 [x86_64](dist/r-painter-1.0.0-linux-x86_64.tar.gz), [arm64](dist/r-painter-1.0.0-linux-aarch64.tar.gz).
-실행하려면 Qt 6 런타임(`libqt6widgets6`)이 필요합니다.
+They need the Qt 6 runtime (`libqt6widgets6`).
 
 ### Haiku
 
-![Haiku에서 실행한 R Painter](docs/screenshots/haiku.png)
+![R Painter running on Haiku](docs/screenshots/haiku.png)
 
-1. [`r_painter-1.0.0-1-x86_64.hpkg`](dist/r_painter-1.0.0-1-x86_64.hpkg)를 내려받습니다.
-2. 터미널에서 설치합니다.
+1. Open Terminal and run:
 
    ```sh
-   pkgman install ~/Desktop/r_painter-1.0.0-1-x86_64.hpkg
+   pkgman add-repo https://pkgman.rainygirl.com/$(getarch -p)
+   pkgman install rpainter
    ```
 
-3. Deskbar의 **Applications** 메뉴에서 **R Painter**를 엽니다.
+   The package is published for x86_64. The repository only has to be added once.
+2. Open **R Painter** from the **Applications** menu in Deskbar.
 
-직접 빌드하려면:
+To build it yourself:
 
 ```sh
 pkgman install gcc binutils make cmake haiku_devel
 ./haiku/build.sh
 ```
 
-## 라이선스
+## License
 
-MIT. [LICENSE](LICENSE)를 참고하세요.
+MIT. See [LICENSE](LICENSE).
 
-## AI 사용 고지
+## AI disclosure
 
-이 프로그램은 Claude로 작성했습니다.
+Claude was used in the development of this program.

@@ -45,6 +45,7 @@ public:
     SvSquare *square;
     HueStrip *strip;
     QLineEdit *hex;
+    bool keepHex = false; // while the hex field itself is being typed in
     QSpinBox *rgb[3], *hsv[3];
 
 private:

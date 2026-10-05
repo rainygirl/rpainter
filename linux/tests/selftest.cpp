@@ -344,19 +344,21 @@ int main(int argc, char **argv) {
         ColorPicker cp("test", QColor("#336699"), &w);
         cp.show();
         QApplication::processEvents();
-        ok("picker shows initial color", cp.color().rgb() == QColor("#336699").rgb() && cp.hex->text() == "#336699" && cp.rgb[0]->value() == 0x33 && cp.hsv[0]->value() == 210);
+        ok("picker shows initial color", cp.color().rgb() == QColor("#336699").rgb() && cp.hex->text() == "336699" && cp.rgb[0]->value() == 0x33 && cp.hsv[0]->value() == 210);
         mouse(cp.square, QEvent::MouseButtonPress, {255, 0}, Qt::NoModifier);
         ok("picker square: top-right = pure hue", cp.color().rgb() == QColor::fromHsv(210, 255, 255).rgb());
         mouse(cp.strip, QEvent::MouseButtonPress, {10, 85}, Qt::NoModifier); // 85/255 * 360 = 120
-        ok("picker hue strip", cp.color().rgb() == QColor(0, 255, 0).rgb() && cp.hex->text() == "#00ff00");
+        ok("picker hue strip", cp.color().rgb() == QColor(0, 255, 0).rgb() && cp.hex->text() == "00ff00");
         mouse(cp.square, QEvent::MouseMove, {0, 255}, Qt::NoModifier);
         ok("picker keeps hue at black", cp.color().rgb() == QColor(0, 0, 0).rgb() && cp.hsv[0]->value() == 120);
         cp.rgb[0]->setValue(255);
         ok("picker rgb field", cp.color().rgb() == QColor(255, 0, 0).rgb() && cp.hsv[0]->value() == 0 && cp.hsv[1]->value() == 100);
         cp.hsv[0]->setValue(240);
         ok("picker hsv field", cp.color().rgb() == QColor(0, 0, 255).rgb());
-        cp.hex->setText("fb8c00"); emit cp.hex->editingFinished();
-        ok("picker hex field", cp.color().rgb() == QColor("#fb8c00").rgb() && cp.rgb[1]->value() == 0x8c);
+        cp.hex->setText("fb8c"); emit cp.hex->textEdited("fb8c");
+        ok("picker hex field waits for 6 digits", cp.color().rgb() == QColor(0, 0, 255).rgb());
+        cp.hex->setText("#fb8c00"); emit cp.hex->textEdited("#fb8c00"); // applies while typing, '#' is dropped
+        ok("picker hex field applies live", cp.color().rgb() == QColor("#fb8c00").rgb() && cp.rgb[1]->value() == 0x8c && cp.hex->text() == "fb8c00");
         if (argc > 1) cp.grab().save(QString(argv[1]) + ".picker.png");
     }
 

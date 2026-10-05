@@ -1,5 +1,6 @@
 #include "colorpicker.h"
 #include "editor.h"
+#include <cctype>
 #include <QDialogButtonBox>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -102,12 +103,16 @@ ColorPicker::ColorPicker(const QString &title, QColor initial, QWidget *parent) 
     hex->setMaxLength(7);
     grid->addWidget(new QLabel("#", this), 6, 0);
     grid->addWidget(hex, 6, 1);
-    connect(hex, &QLineEdit::editingFinished, this, [this] {
-        QString t = hex->text().trimmed();
-        if (!t.startsWith('#')) t.prepend('#');
-        const QColor c(t);
-        if (c.isValid() && (t.size() == 7 || t.size() == 4)) setColor(c); else sync();
+    // the '#' is the label, so it cannot be deleted; a complete value applies as it is typed
+    connect(hex, &QLineEdit::textEdited, this, [this](const QString &typed) {
+        QString t;
+        for (const QChar ch : typed) if (ch.unicode() < 128 && isxdigit(ch.unicode())) t += ch;
+        t.truncate(6);
+        if (t != typed) hex->setText(t);
+        const QColor c('#' + t);
+        if (t.size() == 6 && c.isValid()) { keepHex = true; setColor(c); keepHex = false; }
     });
+    connect(hex, &QLineEdit::editingFinished, this, [this] { sync(); });
     side->addLayout(grid);
     side->addStretch(1);
     QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
@@ -142,7 +147,7 @@ void ColorPicker::sync() {
     rgb[0]->setValue(c.red());
     rgb[1]->setValue(c.green());
     rgb[2]->setValue(c.blue());
-    hex->setText(c.name());
+    if (!keepHex) hex->setText(c.name().mid(1));
     newSwatch->setStyleSheet(QString("background: %1; border: 1px solid #111;").arg(c.name()));
     syncing = false;
 }
