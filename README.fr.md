@@ -78,12 +78,12 @@ Pour le compiler vous-même :
 
 ```sh
 pkgman install gcc binutils make cmake haiku_devel
-./haiku/build.sh
+./renku/build.sh
 ```
 
 ## Licence
 
-MIT. Voir [LICENSE](LICENSE). La version RenkuOS (HaikuOS) embarque libwebp (BSD) et stb (domaine public) ; leurs licences sont dans `haiku/third_party`.
+MIT. Voir [LICENSE](LICENSE). La version RenkuOS (HaikuOS) embarque libwebp (BSD) et stb (domaine public) ; leurs licences sont dans `renku/third_party`.
 
 ## Utilisation de l'IA
 

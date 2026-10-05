@@ -21,7 +21,7 @@ def scan(path, pattern):
         s = next(g for g in m.groups() if g is not None)
         if han.search(s) and not known(s): missing.setdefault(s, set()).add(path)
 
-for f in ['engine/doc.cpp', 'engine/tools.cpp', 'engine/raster.cpp', 'mac/src/app.mm', 'haiku/src/app.cpp'] + sorted(glob.glob(os.path.join(root, 'linux/src/*.cpp'))):
+for f in ['engine/doc.cpp', 'engine/tools.cpp', 'engine/raster.cpp', 'mac/src/app.mm', 'renku/src/app.cpp'] + sorted(glob.glob(os.path.join(root, 'linux/src/*.cpp'))):
     scan(os.path.relpath(f, root) if os.path.isabs(f) else f, r'(?:TR|L|K)\("((?:[^"\\\n]|\\.)*)"\)|\{[^{}\n]*?"((?:[^"\\\n]|\\.)*[가-힣](?:[^"\\\n]|\\.)*)"')
 scan('web/app.js', r"\bt[f]?\('((?:[^'\\\n]|\\.)*)'")
 for k, v in sorted(missing.items()): print(', '.join(sorted(v)), '\t', k)

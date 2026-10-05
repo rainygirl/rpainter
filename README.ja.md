@@ -78,12 +78,12 @@ Ubuntu 24.04 向けのビルド済みファイルもあります:
 
 ```sh
 pkgman install gcc binutils make cmake haiku_devel
-./haiku/build.sh
+./renku/build.sh
 ```
 
 ## ライセンス
 
-MIT。[LICENSE](LICENSE) を参照してください。 RenkuOS (HaikuOS) 版には libwebp (BSD) と stb (パブリックドメイン) が含まれており、それぞれのライセンスは `haiku/third_party` にあります。
+MIT。[LICENSE](LICENSE) を参照してください。 RenkuOS (HaikuOS) 版には libwebp (BSD) と stb (パブリックドメイン) が含まれており、それぞれのライセンスは `renku/third_party` にあります。
 
 ## AI 利用について
 
