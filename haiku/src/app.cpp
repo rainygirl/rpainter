@@ -47,6 +47,13 @@
 #include <View.h>
 #include <Window.h>
 
+#define STBI_NO_STDIO
+#define STBI_WRITE_NO_STDIO
+#include "../third_party/stb/stb_image.h"
+#include "../third_party/stb/stb_image_write.h"
+#include "../third_party/libwebp/src/webp/decode.h"
+#include "../third_party/libwebp/src/webp/encode.h"
+
 #include <cctype>
 #include <cstdio>
 #include <cstdlib>
@@ -104,9 +111,74 @@ static BBitmap *bitmapFromImage(const Image &im, bool opaque = false) {
     }
     return b;
 }
+// Whether the Translation Kit can write this format. Minimal images (arm64) carry no image translators at all;
+// the built-in codecs take over there.
+static bool hasTranslatorFor(uint32 format) {
+    BTranslatorRoster *roster = BTranslatorRoster::Default();
+    translator_id *ids = NULL;
+    int32 count = 0;
+    if (roster->GetAllTranslators(&ids, &count) != B_OK) return false;
+    bool found = false;
+    for (int32 i = 0; i < count && !found; i++) {
+        const translation_format *formats = NULL;
+        int32 n = 0;
+        if (roster->GetOutputFormats(ids[i], &formats, &n) != B_OK) continue;
+        for (int32 j = 0; j < n; j++) if (formats[j].type == format) { found = true; break; }
+    }
+    delete[] ids;
+    return found;
+}
+static void stbWrite(void *context, void *data, int size) { static_cast<std::string *>(context)->append(static_cast<const char *>(data), size_t(size)); }
+// PNG / JPEG (stb) and WebP (libwebp) through the built-in codecs
+static std::string encodeBuiltIn(const Image &im, uint32 format) {
+    const bool opaque = format == B_JPEG_FORMAT; // flattened onto white
+    const int n = opaque ? 3 : 4;
+    std::vector<unsigned char> buf(size_t(im.w) * im.h * n);
+    unsigned char *d = buf.data();
+    for (int y = 0; y < im.h; y++) {
+        const Px *s = im.row(y);
+        for (int x = 0; x < im.w; x++, d += n) {
+            if (opaque) { const int ia = 255 - pxA(s[x]); d[0] = pxR(s[x]) + ia; d[1] = pxG(s[x]) + ia; d[2] = pxB(s[x]) + ia; continue; }
+            const Px c = straightRgb(s[x]);
+            d[0] = pxR(c); d[1] = pxG(c); d[2] = pxB(c); d[3] = pxA(s[x]);
+        }
+    }
+    std::string out;
+    if (format == B_WEBP_FORMAT) {
+        uint8_t *data = NULL;
+        const size_t size = WebPEncodeRGBA(buf.data(), im.w, im.h, im.w * 4, 90, &data);
+        if (size) out.assign(reinterpret_cast<const char *>(data), size);
+        WebPFree(data);
+        return out;
+    }
+    const int ok = format == B_JPEG_FORMAT ? stbi_write_jpg_to_func(stbWrite, &out, im.w, im.h, n, buf.data(), 92)
+                 : format == B_PNG_FORMAT ? stbi_write_png_to_func(stbWrite, &out, im.w, im.h, n, buf.data(), im.w * n) : 0;
+    return ok ? out : std::string();
+}
+static Image decodeBuiltIn(const std::string &bytes) {
+    int w = 0, h = 0, comp = 0;
+    if (bytes.empty()) return Image();
+    const unsigned char *in = reinterpret_cast<const unsigned char *>(bytes.data());
+    const bool webp = bytes.size() > 12 && !memcmp(in, "RIFF", 4) && !memcmp(in + 8, "WEBP", 4);
+    unsigned char *px = webp ? WebPDecodeRGBA(in, bytes.size(), &w, &h) : stbi_load_from_memory(in, int(bytes.size()), &w, &h, &comp, 4);
+    if (!px) return Image();
+    Image im(w, h);
+    const unsigned char *s = px;
+    for (int y = 0; y < h; y++) {
+        Px *d = im.wrow(y);
+        for (int x = 0; x < w; x++, s += 4) d[x] = premul(s[0], s[1], s[2], s[3]);
+    }
+    if (webp) WebPFree(px); else stbi_image_free(px);
+    return im;
+}
 static status_t translateImage(const Image &im, BPositionIO *out, uint32 format) {
-    BBitmapStream stream(bitmapFromImage(im, format == B_JPEG_FORMAT)); // the stream owns the bitmap
-    return BTranslatorRoster::Default()->Translate(&stream, NULL, NULL, out, format);
+    if (hasTranslatorFor(format)) {
+        BBitmapStream stream(bitmapFromImage(im, format == B_JPEG_FORMAT)); // the stream owns the bitmap
+        return BTranslatorRoster::Default()->Translate(&stream, NULL, NULL, out, format);
+    }
+    const std::string data = encodeBuiltIn(im, format);
+    if (data.empty()) return B_NO_TRANSLATOR;
+    return out->Write(data.data(), data.size()) == ssize_t(data.size()) ? B_OK : B_IO_ERROR;
 }
 static std::string encodePng(const Image &im) {
     BMallocIO out;
@@ -118,13 +190,14 @@ static Image decodeImage(const std::string &bytes) {
     BBitmap *b = BTranslationUtils::GetBitmap(&io);
     const Image im = imageFromBitmap(b);
     delete b;
-    return im;
+    return im.null() ? decodeBuiltIn(bytes) : im;
 }
+static std::string readFile(const char *path);
 static Image loadImageFile(const char *path) {
     BBitmap *b = BTranslationUtils::GetBitmap(path);
     const Image im = imageFromBitmap(b);
     delete b;
-    return im;
+    return im.null() ? decodeBuiltIn(readFile(path)) : im;
 }
 static std::string readFile(const char *path) {
     BFile f(path, B_READ_ONLY);

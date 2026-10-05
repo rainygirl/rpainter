@@ -26,7 +26,10 @@ description		"R Painter is a layer-based image editor: layers and blend modes, s
 packager		"rainygirl <rainygirl@gmail.com>"
 vendor			"rainygirl"
 copyrights		{ "2026 Lee JunHaeng" }
-licenses		{ "MIT" }
+licenses {
+	"MIT"
+	"BSD (3-clause)"
+}
 provides {
 	rpainter = $VER
 	app:RPainter = $VER
