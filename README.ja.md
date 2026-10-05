@@ -13,7 +13,7 @@
 | Web | 最新のブラウザー | インストール不要。ブラウザーで開きます |
 | macOS 26 以降 | Apple Silicon (arm64) | アプリをダウンロードします |
 | Linux: Debian、Ubuntu、Linux Mint | x86_64、arm64 | コマンド一つでビルドするか、ビルド済みファイルを使います |
-| RenkuOS (HaikuOS) | x86_64、arm64 | pkgman.rainygirl.com のリポジトリから `pkgman` でインストールします |
+| RenkuOS (HaikuOS) | x86_64、arm64、32 ビット x86 (x86_gcc2) | pkgman.rainygirl.com のリポジトリから `pkgman` でインストールします |
 
 ## インストール
 
@@ -71,7 +71,7 @@ Ubuntu 24.04 向けのビルド済みファイルもあります:
    pkgman install rpainter
    ```
 
-   パッケージは x86_64 と arm64 向けに公開しており、`$(getarch -p)` が合うほうを選びます。32 ビットの RenkuOS (HaikuOS) (x86、x86_gcc2) には対応していません。リポジトリの追加は一度だけで済みます。
+   パッケージは x86_64、arm64、32 ビット x86 (x86_gcc2) 向けに公開しており、`$(getarch -p)` が合うリポジトリを選びます。32 ビットのイメージではパッケージ名が `rpainter_x86` なので、`pkgman install rpainter_x86` でインストールします。リポジトリの追加は一度だけで済みます。
 2. Deskbar の **Applications** メニューから **R Painter** を開きます。
 
 自分でビルドする場合:

@@ -13,7 +13,7 @@ English · [Français](README.fr.md) · [Italiano](README.it.md) · [日本語](
 | Web | any current browser | Nothing to install. Open it in a browser |
 | macOS 26 or later | Apple Silicon (arm64) | Download the app |
 | Linux: Debian, Ubuntu, Linux Mint | x86_64, arm64 | Build it with one command, or use the prebuilt files |
-| RenkuOS (HaikuOS) | x86_64, arm64 | `pkgman`, from pkgman.rainygirl.com |
+| RenkuOS (HaikuOS) | x86_64, arm64, 32-bit x86 (x86_gcc2) | `pkgman`, from pkgman.rainygirl.com |
 
 ## Install
 
@@ -71,7 +71,7 @@ They need the Qt 6 runtime (`libqt6widgets6`).
    pkgman install rpainter
    ```
 
-   Packages are published for x86_64 and arm64; `$(getarch -p)` picks the right one. 32-bit RenkuOS (HaikuOS) (x86, x86_gcc2) is not supported. The repository only has to be added once.
+   Packages are published for x86_64, arm64 and 32-bit x86 (x86_gcc2); `$(getarch -p)` picks the right repository. On the 32-bit image the package is named `rpainter_x86`, so run `pkgman install rpainter_x86` there. The repository only has to be added once.
 2. Open **R Painter** from the **Applications** menu in Deskbar.
 
 To build it yourself:

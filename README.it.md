@@ -13,7 +13,7 @@ Non c'è uno strumento testo: non si può aggiungere testo a un'immagine.
 | Web | un browser recente | Niente da installare. Si apre nel browser |
 | macOS 26 o successivo | Apple Silicon (arm64) | Scarica l'app |
 | Linux: Debian, Ubuntu, Linux Mint | x86_64, arm64 | Si compila con un solo comando, oppure si usano i file già compilati |
-| RenkuOS (HaikuOS) | x86_64, arm64 | `pkgman`, dal repository pkgman.rainygirl.com |
+| RenkuOS (HaikuOS) | x86_64, arm64, x86 a 32 bit (x86_gcc2) | `pkgman`, dal repository pkgman.rainygirl.com |
 
 ## Installazione
 
@@ -71,7 +71,7 @@ Richiedono il runtime Qt 6 (`libqt6widgets6`).
    pkgman install rpainter
    ```
 
-   I pacchetti sono pubblicati per x86_64 e arm64; `$(getarch -p)` sceglie quello giusto. RenkuOS (HaikuOS) a 32 bit (x86, x86_gcc2) non è supportato. Il repository va aggiunto una volta sola.
+   I pacchetti sono pubblicati per x86_64, arm64 e x86 a 32 bit (x86_gcc2); `$(getarch -p)` sceglie il repository giusto. Sull'immagine a 32 bit il pacchetto si chiama `rpainter_x86`, quindi lì si usa `pkgman install rpainter_x86`. Il repository va aggiunto una volta sola.
 2. Apri **R Painter** dal menu **Applications** di Deskbar.
 
 Per compilarlo da te:
