@@ -13,7 +13,7 @@
 | 웹 | 설치 없음. 브라우저에서 엽니다 |
 | macOS 26 이상, Apple Silicon | 앱을 내려받습니다 |
 | Linux: Debian, Ubuntu, Linux Mint | 명령 한 번으로 빌드합니다 |
-| Haiku x86_64 | `pkgman`으로 설치합니다 |
+| Haiku x86_64, arm64 | `pkgman`으로 설치합니다 |
 
 ### 웹
 
@@ -69,7 +69,7 @@ Ubuntu 24.04용으로 미리 빌드한 파일도 있습니다:
    pkgman install rpainter
    ```
 
-   패키지는 x86_64용으로 배포합니다. 저장소 추가는 한 번만 하면 됩니다.
+   패키지는 x86_64와 arm64용으로 배포합니다. 저장소 추가는 한 번만 하면 됩니다.
 2. Deskbar의 **Applications** 메뉴에서 **R Painter**를 엽니다.
 
 직접 빌드하려면:

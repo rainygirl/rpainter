@@ -13,7 +13,7 @@ English · [Français](README.fr.md) · [Italiano](README.it.md) · [日本語](
 | Web | Nothing to install. Open it in a browser |
 | macOS 26 or later, Apple Silicon | Download the app |
 | Linux: Debian, Ubuntu, Linux Mint | Build it with one command |
-| Haiku x86_64 | Install with `pkgman` |
+| Haiku x86_64, arm64 | Install with `pkgman` |
 
 ### Web
 
@@ -69,7 +69,7 @@ They need the Qt 6 runtime (`libqt6widgets6`).
    pkgman install rpainter
    ```
 
-   The package is published for x86_64. The repository only has to be added once.
+   The package is published for x86_64 and arm64. The repository only has to be added once.
 2. Open **R Painter** from the **Applications** menu in Deskbar.
 
 To build it yourself:

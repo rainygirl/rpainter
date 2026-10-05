@@ -13,7 +13,7 @@ Non c'è uno strumento testo: non si può aggiungere testo a un'immagine.
 | Web | Niente da installare. Si apre nel browser |
 | macOS 26 o successivo, Apple Silicon | Scarica l'app |
 | Linux: Debian, Ubuntu, Linux Mint | Si compila con un solo comando |
-| Haiku x86_64 | Si installa con `pkgman` |
+| Haiku x86_64, arm64 | Si installa con `pkgman` |
 
 ### Web
 
@@ -69,7 +69,7 @@ Richiedono il runtime Qt 6 (`libqt6widgets6`).
    pkgman install rpainter
    ```
 
-   Il pacchetto è pubblicato per x86_64. Il repository va aggiunto una volta sola.
+   Il pacchetto è pubblicato per x86_64 e arm64. Il repository va aggiunto una volta sola.
 2. Apri **R Painter** dal menu **Applications** di Deskbar.
 
 Per compilarlo da te:
